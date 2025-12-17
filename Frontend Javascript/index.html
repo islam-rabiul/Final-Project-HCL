@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #19cae6fe;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: rgb(183, 228, 232);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 24px;
+            font-weight: normal;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        label .required {
+            color: #d9534f;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Arial', sans-serif;
+            background-color: #fff;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #4CAF50;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .radio-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: normal;
+            cursor: pointer;
+            margin-bottom: 0;
+        }
+
+        input[type="radio"] {
+            cursor: pointer;
+            margin: 0;
+        }
+
+        input[type="checkbox"] {
+            cursor: pointer;
+            margin-right: 8px;
+        }
+
+        .checkbox-group {
+            margin-top: 8px;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .error {
+            color: #d9534f;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        /* Success Page Styles */
+        .success-page {
+            display: none;
+        }
+
+        .success-page.active {
+            display: block;
+        }
+
+        .success-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        .success-icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .success-message {
+            color: #4CAF50;
+            font-size: 22px;
+            margin-bottom: 5px;
+            font-weight: normal;
+        }
+
+        .success-subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .details-section {
+            margin-bottom: 25px;
+        }
+
+        .details-title {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .detail-row {
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            color: #666;
+            min-width: 120px;
+            font-size: 14px;
+        }
+
+        .detail-value {
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .back-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .back-btn:hover {
+            background-color: #45a049;
+        }
+
+        .note {
+            background-color: #f9f9f9;
+            border-left: 3px solid #4CAF50;
+            padding: 12px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Registration Form Page -->
+        <div id="formPage">
+             <center><h1>Student Registration Form</h1></center>
+            <p class="subtitle">Please fill out all required fields to complete your registration</p>
+            
+            <form id="registrationForm">
+                <!-- Name Field -->
+                <div class="form-group">
+                    <label for="name">Full Name <span class="required">*</span></label>
+                    <input type="text" id="name" placeholder="Enter your full name">
+                    <div class="error" id="nameError">Name is required</div>
+                </div>
+
+                <!-- Email Field -->
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" placeholder="example@email.com">
+                    <div class="error" id="emailError">Please enter a valid email address</div>
+                </div>
+
+                <!-- Gender Field -->
+                <div class="form-group">
+                    <label>Gender <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <label>
+                            <input type="radio" name="gender" value="Male"> Male
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="Female"> Female
+                        </label>
+                        <label>
+                            <input type="radio" name="gender" value="Other"> Other
+                        </label>
+                    </div>
+                    <div class="error" id="genderError">Please select your gender</div>
+                </div>
+
+                <!-- Course Field -->
+                <div class="form-group">
+                    <label for="course">Select Course <span class="required">*</span></label>
+                    <select id="course">
+                        <option value="">-- Choose a course --</option>
+                        <option value="HTML">HTML</option>
+                        <option value="CSS">CSS</option>
+                        <option value="JavaScript">JavaScript</option>
+                        <option value="React">React</option>
+                        <option value="Node.js">Node.js</option>
+                        <option value="Python">Python</option>
+                    </select>
+                    <div class="error" id="courseError">Please select a course</div>
+                </div>
+
+                <!-- Terms & Conditions -->
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" id="terms">
+                            I agree to the Terms & Conditions <span class="required">*</span>
+                        </label>
+                    </div>
+                    <div class="error" id="termsError">You must agree to the terms and conditions</div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">Submit Registration</button>
+
+                <div class="note">
+                    <strong>Note:</strong> All fields marked with <span class="required">*</span> are mandatory
+                </div>
+            </form>
+        </div>
+
+        <!-- Success Page (Hidden by default) -->
+        <div id="successPage" class="success-page">
+            <div class="success-header">
+                <div class="success-icon">✓</div>
+                <div class="success-message">Registration Successful!</div>
+                <p class="success-subtitle">Your information has been submitted successfully</p>
+            </div>
+
+            <div class="details-section">
+                <h2 class="details-title">Registration Details</h2>
+                
+                <div class="detail-row">
+                    <span class="detail-label">Name:</span>
+                    <span class="detail-value" id="displayName"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Email:</span>
+                    <span class="detail-value" id="displayEmail"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Gender:</span>
+                    <span class="detail-value" id="displayGender"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Course:</span>
+                    <span class="detail-value" id="displayCourse"></span>
+                </div>
+            </div>
+
+            <button class="back-btn" onclick="resetForm()">Register Another Student</button>
+
+            <div class="note" style="color: green;">
+                Thank you for registering! You will receive a confirmation email shortly.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('registrationForm');
+        const formPage = document.getElementById('formPage');
+        const successPage = document.getElementById('successPage');
+
+        // Get form elements
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const courseSelect = document.getElementById('course');
+        const termsCheckbox = document.getElementById('terms');
+
+        // Get error elements
+        const nameError = document.getElementById('nameError');
+        const emailError = document.getElementById('emailError');
+        const genderError = document.getElementById('genderError');
+        const courseError = document.getElementById('courseError');
+        const termsError = document.getElementById('termsError');
+
+        // Get display elements
+        const displayName = document.getElementById('displayName');
+        const displayEmail = document.getElementById('displayEmail');
+        const displayGender = document.getElementById('displayGender');
+        const displayCourse = document.getElementById('displayCourse');
+
+        // Email validation regex
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hide all errors first
+            hideAllErrors();
+            
+            // Validate all fields
+            let isValid = true;
+
+            // Validate Name
+            if (nameInput.value.trim() === '') {
+                nameError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Email
+            if (!emailRegex.test(emailInput.value.trim())) {
+                emailError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Gender
+            const gender = document.querySelector('input[name="gender"]:checked');
+            if (!gender) {
+                genderError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Course
+            if (courseSelect.value === '') {
+                courseError.style.display = 'block';
+                isValid = false;
+            }
+
+            // Validate Terms
+            if (!termsCheckbox.checked) {
+                termsError.style.display = 'block';
+                isValid = false;
+            }
+
+            // If all validations pass, show success page
+            if (isValid) {
+                showSuccessPage(
+                    nameInput.value.trim(),
+                    emailInput.value.trim(),
+                    gender.value,
+                    courseSelect.value
+                );
+            }
+        });
+
+        function hideAllErrors() {
+            nameError.style.display = 'none';
+            emailError.style.display = 'none';
+            genderError.style.display = 'none';
+            courseError.style.display = 'none';
+            termsError.style.display = 'none';
+        }
+
+        function showSuccessPage(name, email, gender, course) {
+            // Update display values
+            displayName.textContent = name;
+            displayEmail.textContent = email;
+            displayGender.textContent = gender;
+            displayCourse.textContent = course;
+
+            // Hide form page and show success page
+            formPage.style.display = 'none';
+            successPage.classList.add('active');
+        }
+
+        function resetForm() {
+            // Reset form
+            form.reset();
+            
+            // Hide success page and show form page
+            successPage.classList.remove('active');
+            formPage.style.display = 'block';
+            
+            // Hide all errors
+            hideAllErrors();
+        }
+    </script>
+</body>
+</html>
